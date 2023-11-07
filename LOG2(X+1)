@@ -1,0 +1,60 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOrs3zc7Uep8ppnugriTl3n",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/wangpouwei/Paul/blob/master/LOG2(X%2B1)\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "dsXCXqHOLVSv"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "\n",
+        "# 读取Excel文件\n",
+        "excel_file = 'CLDHCC_KMU.xlsx'  # 替换为您的Excel文件的路径\n",
+        "df = pd.read_excel(excel_file)\n",
+        "\n",
+        "# 定义一个函数，将单元格中的值加1并取对数\n",
+        "def add_one_and_log2(value):\n",
+        "    if isinstance(value, (int, float)):\n",
+        "        return np.log2(value + 1)\n",
+        "    else:\n",
+        "        return value\n",
+        "\n",
+        "# 应用函数到所有数据列\n",
+        "df = df.applymap(add_one_and_log2)\n",
+        "\n",
+        "# 将结果保存回Excel文件\n",
+        "output_file = 'CLDHCC_KMUoutput_excel_file.xlsx'  # 替换为输出Excel文件的路径\n",
+        "df.to_excel(output_file, index=False, engine='openpyxl')\n"
+      ]
+    }
+  ]
+}
